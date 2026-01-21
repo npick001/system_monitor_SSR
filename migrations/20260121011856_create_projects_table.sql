@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS projects (
 -- Seed some dummy data so we see something immediately
 INSERT INTO projects (title, description, link, created_at)
 VALUES 
-('Portfolio Site', 'Server-Side Rendered portfolio using Tera templates and Docker.', 'https://github.com/yourusername/portfolio', 1700000005);
+('Portfolio Site', 'Server-Side Rendered portfolio using Tera templates and Docker.', 'https://github.com/npick001/system_monitor_SSR', 1700000005);
 INSERT INTO projects (title, description, link, created_at) VALUES 
 (
     'HPC Distributed CNN Pipeline', 
