@@ -1,0 +1,10 @@
+# shared/Cargo.toml
+[package]
+name = "monitor_shared"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# We use the versions defined in the root workspace file
+serde = { workspace = true }
+sqlx = { workspace = true }

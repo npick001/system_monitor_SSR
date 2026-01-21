@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}CV | Nicholas Pickering{% endblock title %}
+
+{% block content %}
+<div class="resume-container">
+    <div class="resume-header">
+        <h1>Nicholas Pickering</h1>
+        <p>Software Engineer & Simulator Engineer</p>
+        <div class="resume-meta">
+            <a href="mailto:nickpickering7@gmail.com" class="project-link">nickpickering7@gmail.com</a>
+            <span>•</span>
+            <a href="https://github.com/npick001" target="_blank" class="project-link">github.com/npick001</a>
+            <span>•</span>
+            <span>(540)-656-6571</span>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <p class="intro">
+            Software engineer specializing in high-performance distributed systems. 
+            Proven experience building production C++ systems with sub-second latency requirements, 
+            architecting scalable data pipelines for real-time processing, and deploying ML models on HPC clusters.
+            Strong foundation in distributed computing, system optimization, and cross-platform integration.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="resume-section">
+        <h2>Core Competencies</h2>
+        <div class="cv-grid">
+            <div class="cv-column">
+                <h3>Systems & HPC</h3>
+                <ul>
+                    <li>C++ (Production), Rust, Java</li>
+                    <li>Distributed Synchronization</li>
+                    <li>Real-time Data Streaming (TCP/UDP)</li>
+                    <li>SLURM Workload Manager</li>
+                </ul>
+            </div>
+            <div class="cv-column">
+                <h3>AI & Machine Learning</h3>
+                <ul>
+                    <li>PyTorch Distributed Training</li>
+                    <li>CNN Architecture Design</li>
+                    <li>Heuristic Search Algorithms</li>
+                    <li>Constraint Satisfaction Problems</li>
+                </ul>
+            </div>
+            <div class="cv-column">
+                <h3>DevOps & Tools</h3>
+                <ul>
+                    <li>Docker & Containerization</li>
+                    <li>GitHub Actions (CI/CD)</li>
+                    <li>Performance Profiling</li>
+                    <li>Linux/Unix Administration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <h2>AI & HPC Infrastructure Projects</h2>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>Distributed CNN Training on HPC Infrastructure</h3>
+                <span class="date">2025</span>
+            </div>
+            <ul>
+                <li>Designed and implemented scalable CNN training pipeline in Python with PyTorch, executing on HPC clusters using SLURM for job scheduling and resource management.</li>
+                <li>Analyzed strong and weak scalability characteristics across increasing parallelism levels, optimizing data loading and gradient synchronization for distributed training efficiency.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>AI Agent Development in C++</h3>
+                <span class="date">2023 – 2024</span>
+            </div>
+            <ul>
+                <li><strong>Pukoban Solver:</strong> Implemented puzzle-solving agent using search algorithms and heuristics.</li>
+                <li><strong>Game AI:</strong> Built Connect 4 game AI utilizing minimax algorithm with alpha-beta pruning for optimized decision trees.</li>
+                <li><strong>Constraint Solver:</strong> Developed CSP solver for crossword puzzles, implementing forward checking and backtracking with custom data structures for efficient constraint propagation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <h2>Professional Experience</h2>
+        
+        <div class="job">
+            <div class="job-header">
+                <h3>Simulator Engineer</h3>
+                <span class="date">June 2024 – Present</span>
+            </div>
+            <span class="company">Westinghouse Electric Company LLC</span>
+            <ul>
+                <li><strong>High-Fidelity Simulation:</strong> Developing production-quality C++ interface code with rigorous testing and performance optimization for nuclear training environments.</li>
+                <li><strong>Infrastructure as Code:</strong> Implemented automated provisioning systems, reducing deployment costs by $15,000 per project through standardization.</li>
+                <li><strong>Client Liaison:</strong> Served as primary technical point of contact for international clients (China), managing on-site escalations and technical translation.</li>
+                <li><strong>Data Management:</strong> Managing SQL/NoSQL systems for distributed simulation state and telemetry.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>Software Engineer</h3>
+                <span class="date">Mar 2022 – Dec 2022</span>
+            </div>
+            <span class="company">MOSIMTEC</span>
+            <ul>
+                <li>Developed predictive models and data analytics solutions using Python and discrete-event simulation software to optimize operational efficiency for healthcare and retail clients.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <h2>Education</h2>
+        <div class="job">
+            <div class="job-header">
+                <h3>BS in Modeling and Simulation Engineering</h3>
+                <span class="date">2019 – 2024</span>
+            </div>
+            <span class="company">Old Dominion University (GPA: 3.8/4.0)</span>
+            <div class="coursework">
+                <strong>Concentration:</strong> Advanced Simulation Techniques<br>
+                <strong>Relevant Coursework:</strong> Artificial Intelligence, Distributed Computing, Visualization, Systems Architecture, Stochastic Analysis.
+            </div>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <h2>Awards & Honors</h2>
+        <div class="job">
+            <div class="job-header">
+                <h3>Graduate Scholarship Award in Modeling & Simulation</h3>
+                <span class="date">2024</span>
+            </div>
+            <span class="company">National Training and Simulation Association (NTSA)</span>
+        </div>
+    </div>
+
+    <div class="download-section" style="text-align: center; margin-top: 4rem;">
+        <a href="/static/resume.pdf" class="btn">Download Resume PDF</a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Backend",
+      "type": "shell",
+      "command": "cargo run -p monitor_backend",
+      "presentation": {
+        "group": "system-monitor",
+        "reveal": "always",
+        "panel": "dedicated" 
+      }
+    },
+    {
+      "label": "Run Agent",
+      "type": "shell",
+      "command": "cargo run -p monitor_agent",
+      "presentation": {
+        "group": "system-monitor",
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Run ALL",
+      "dependsOn": ["Run Backend", "Run Agent"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

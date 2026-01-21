@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Rust Portfolio{% endblock title %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    {% block scripts %}{% endblock scripts %}
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">Nicholas Pickering</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">Philosophy</a> 
+            <a href="/resume">Resume</a>     
+            <a href="/monitor" class="special-link">Live System Monitor</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer>
+        <p>Powered by Rust & Axum</p>
+    </footer>
+</body>
+</html>

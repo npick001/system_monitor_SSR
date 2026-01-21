@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Simulator Engineer & Rust Developer</h1>
+    <p>Building high-performance backend systems and distributed tools.</p>
+</div>
+
+<div class="projects-section">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            {% if project.link %}
+                <a href="{{ project.link }}" class="project-link">View Project &rarr;</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="chat-widget" class="chat-widget">
+    <button id="chat-toggle-btn" class="chat-btn">💬 Ask AI</button>
+    
+    <div id="chat-window" class="chat-window hidden">
+        <div class="chat-header">
+            <span>🤖 Portfolio Assistant</span>
+            <button id="close-chat" class="close-btn">×</button>
+        </div>
+        
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot">
+                Hi! I am an AI trained on Nick's resume and work style. Ask me about his experience with Programming, Leadership, Working Styles, etc!
+            </div>
+        </div>
+
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type a question..." required autocomplete="off">
+            <button type="submit">➤</button>
+        </form>
+    </div>
+</div>
+
+<script src="/static/portfolio.js"></script>
+{% endblock content %}

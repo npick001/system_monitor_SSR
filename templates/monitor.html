@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Telemetry | Nicholas Pickering{% endblock title %}
+
+{% block content %}
+<div class="monitor-container">
+    <h1>Live System Telemetry</h1>
+    <p class="status-indicator">🔴 Connecting to Event Stream...</p>
+
+    <div class="charts-grid">
+        <div class="chart-card">
+            <h3>System Load (%)</h3>
+            <canvas id="loadChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Network Traffic (KB/s)</h3>
+            <canvas id="netChart"></canvas>
+        </div>
+    </div>
+
+    <div class="gpu-section">
+    <div id="gpu-stats-container" class="charts-grid" style="display: none;">
+        <div class="chart-card">
+            <h3>GPU Utilization (%)</h3>
+            <canvas id="gpuUtilChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>GPU Memory (VRAM) & Temp</h3>
+            <canvas id="gpuMemChart"></canvas>
+        </div>
+    </div>
+
+    <div id="no-gpu-message" class="no-gpu-card">
+        <h3>Hardware Acceleration</h3>
+        <p>⚠️ No NVIDIA GPU Detected on Host</p>
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/monitor.js"></script>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Philosophy | Nicholas Pickering{% endblock title %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Augmented Engineering</h1>
+    <p class="intro">
+        I believe the future of software belongs to engineers who can orchestrate AI agents 
+        rather than just writing syntax. Here is how I build systems.
+    </p>
+
+    <div class="philosophy-grid">
+        <div class="philosophy-card">
+            <h3>🤖 The Agentic Workflow</h3>
+            <p>
+                I don't just write code; I build tools that write code. By utilizing 
+                <strong>Rust</strong> for high-performance backends and <strong>Python</strong> 
+                for AI interoperability, I create self-correcting systems (like the System Monitor 
+                you see on this site).
+            </p>
+        </div>
+
+        <div class="philosophy-card">
+            <h3>⚡ Velocity via LLMs</h3>
+            <p>
+                I leverage Large Language Models not just for autocomplete, but for 
+                <strong>Test Driven Development (TDD)</strong> generation and documentation 
+                automation. This allows me to focus on high-level architecture while 
+                ensuring 100% test coverage.
+            </p>
+        </div>
+
+        <div class="philosophy-card">
+            <h3>🏗️ Simulation & Reality</h3>
+            <p>
+                With a background in Simulator Engineering, I understand the importance of 
+                <strong>Synthetic Data</strong>. I use generative models to create robust 
+                test environments that mimic edge-case production scenarios.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
