@@ -1,8 +1,6 @@
 target/
 .git/
 .env
-docker-compose.yml
-docker/
 Cargo.lock
 Command_Reference.md
 knowledge.txt

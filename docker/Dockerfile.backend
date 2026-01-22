@@ -1,0 +1,72 @@
+# ---------------------------------------------------
+# STAGE 1: Builder (Ubuntu 24.04)
+# ---------------------------------------------------
+FROM ubuntu:24.04 as builder
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Install Build Tools
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    libssl-dev \
+    pkg-config \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# 2. Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+WORKDIR /usr/src/app
+
+# 3. Cache Dependencies (Optimization)
+COPY Cargo.toml Cargo.lock ./
+COPY backend/Cargo.toml backend/Cargo.toml
+COPY agent/Cargo.toml agent/Cargo.toml
+COPY shared/Cargo.toml shared/Cargo.toml
+
+RUN mkdir -p backend/src agent/src shared/src && \
+    echo "fn main() {}" > backend/src/main.rs && \
+    echo "fn main() {}" > agent/src/main.rs && \
+    echo "" > shared/src/lib.rs
+
+# Build dependencies
+RUN cargo build --release -p monitor_backend
+
+# 4. Copy Source Code & SQLx Data
+COPY . .
+# --- FIX: Copy the .sqlx folder, NOT the json file ---
+COPY .sqlx .sqlx 
+
+# Force Rebuild of backend source
+RUN touch backend/src/main.rs shared/src/lib.rs
+
+# 5. Final Build
+# We set SQLX_OFFLINE to true so it looks for the .sqlx folder we just copied
+ENV SQLX_OFFLINE=true
+RUN cargo build --release -p monitor_backend
+
+# ---------------------------------------------------
+# STAGE 2: Runtime
+# ---------------------------------------------------
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy Binary and Assets
+COPY --from=builder /usr/src/app/target/release/monitor_backend /app/monitor_backend
+COPY --from=builder /usr/src/app/templates /app/templates
+COPY --from=builder /usr/src/app/static /app/static
+
+# Note: We do NOT need to copy .sqlx here. 
+# The queries are compiled *into* the binary during Stage 1.
+
+CMD ["./monitor_backend"]

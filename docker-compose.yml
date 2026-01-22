@@ -1,0 +1,42 @@
+services:
+  # Database
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: monitor_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}         # Reads from .env
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Reads from .env
+      POSTGRES_DB: ${POSTGRES_DB}             # Reads from .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - "5432" # Security: Don't use "ports", only expose to internal network
+
+  # Rust Backend
+  portfolio:
+    build: 
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: monitor_app
+    restart: unless-stopped
+    expose:
+      - "3000" # Security: Don't expose 3000 to the public internet
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    volumes:
+      - ./knowledge.txt:/usr/src/app/knowledge.txt # Mount knowledge for auto-seeding
+
+  # Cloudflare Tunnel (The Public Doorway)
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared_tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN} # Reads from .env
+
+volumes:
+  postgres_data:
